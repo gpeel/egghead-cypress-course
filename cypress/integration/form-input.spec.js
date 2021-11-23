@@ -10,6 +10,8 @@ describe('Form Input', () => {
     cy
       .get('.new-todo')
       .type(typedText)
-      .should('have.value', typedText)
+      .should('have.value', typedText);
+    cy.contains('li', 'Active')
+      .should('not.be.disabled');
   })
 })
