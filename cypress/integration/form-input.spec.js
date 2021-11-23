@@ -4,7 +4,10 @@ describe('Form Input', () => {
     cy.focused().should('have.class', 'new-todo')
   })
 
-  it.only('Accepts input', () => {
+  // ONLY as fit
+  // it.only('Accepts input', () => {
+
+  it('Accepts input', () => {
     const typedText = 'New todo'
     cy.visit('/')
     cy
