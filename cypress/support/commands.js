@@ -24,11 +24,15 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+// https://stackoverflow.com/questions/69927966/argument-type-string-is-not-assignable-to-parameter-type-keyof-chainable-in-c/69932094
+/**
+ * https://github.com/cypress-io/cypress/issues/18879
+ */
 Cypress.Commands.add('seedAndVisit', (seedData = 'fixture:todos') => {
-  cy.server()
-  cy.route('GET', '/api/todos', seedData).as('load')
+    cy.server();
+    cy.route('GET', '/api/todos', seedData).as('load');
 
-  cy.visit('/')
+    cy.visit('/');
 
-  cy.wait('@load')
-})
+    cy.wait('@load');
+});
