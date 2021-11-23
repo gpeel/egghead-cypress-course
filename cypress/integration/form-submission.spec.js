@@ -1,24 +1,22 @@
 describe('Form submission', () => {
-  it('Adds a new todo item', () => {
-    const newTodo = 'Buy Milk'
-    cy.server()
-    cy
-      .route({
-        method: 'POST',
-        url: '/api/todos',
-        response: { id: 123, name: newTodo, isComplete: false }
-      })
-      .as('save')
+    it('Adds a new todo item', () => {
+        const newTodo = 'Buy Milk';
+        cy.server();
+        cy.route({
+            method: 'POST',
+            url: '/api/todos',
+            response: {id: 123, name: newTodo, isComplete: false}
+        })
+          .as('save');
 
-    cy.seedAndVisit()
+        cy.seedAndVisit();
 
-    cy
-      .get('.new-todo')
-      .type(newTodo)
-      .type('{enter}')
+        cy.get('.new-todo')
+          .type(newTodo)
+          .type('{enter}');
 
-    cy.wait('@save')
+        cy.wait('@save');
 
-    cy.get('.todo-list li').should('have.length', 5)
-  })
-})
+        cy.get('.todo-list li').should('have.length', 5);
+    });
+});
